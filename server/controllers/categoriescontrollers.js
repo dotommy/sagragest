@@ -37,3 +37,21 @@ export async function createCategory(name) {
         throw error;
     }
   }
+
+  export async function InitializeCategories() {
+    
+    try {
+        const categories = ['Antipasti','Primi','Secondi','Pizze','Dolci','Bibite']
+        const existingcategories = await prisma.categories.findMany();
+        
+    if (existingcategories.length === 0) {
+            for (category of categories) {
+                createCategory(category)
+            }
+        }
+
+        console.log('Categorie create');
+    } catch (error) {
+        console.error('Errore creazione categorie:', error);
+    }
+  }

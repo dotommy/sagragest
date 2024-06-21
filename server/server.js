@@ -11,6 +11,7 @@ import ordersrouter from './routes/ordersroutes.js';
 import orderitemsrouter from './routes/ordersitemsroutes.js';
 import authrouter from './routes/authroutes.js';
 import { createDefaultAdminUser } from './controllers/authcontrollers.js';
+import { InitializeCategories } from './controllers/categoriescontrollers.js';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,4 +25,5 @@ app.use('/auth', authrouter)
 app.listen(PORT, async () => {
     console.log(`Il server è in esecuzione sulla porta ${PORT}`);
     await createDefaultAdminUser()
+    await InitializeCategories()
 });
